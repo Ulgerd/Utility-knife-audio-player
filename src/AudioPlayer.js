@@ -23,8 +23,8 @@ class AudioPlayer extends Component {
     })
 
     this.audio.onloadedmetadata = () => {
-			this.setState({duration: this.audio.duration});
-		};
+	this.setState({duration: this.audio.duration});
+    };
 
     this.audio.onplay = () => {
       this.currentTimeInterval = setInterval( () => {
@@ -33,7 +33,7 @@ class AudioPlayer extends Component {
     };
 
     this.audio.onpause = () => {
-			clearInterval(this.currentTimeInterval);
+      clearInterval(this.currentTimeInterval);
       if (Math.floor(this.audio.currentTime) === Math.floor(this.audio.duration)) {
         this.setState({
           currentTrack: this.state.currentTrack+1,
@@ -42,7 +42,7 @@ class AudioPlayer extends Component {
         })
         this.onPlay();
       }
-		};
+    };
   }
 
   onBackward = () => {
