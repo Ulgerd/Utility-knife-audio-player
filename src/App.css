@@ -1,33 +1,139 @@
-.App {
-  text-align: center;
+body {
+  text-align: left;
+  padding: 10px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.audio-player-wrapper {
+  margin:10px;
+  padding:10px;
+  width: 850px;
+  height:60px;
+  clip-path: polygon(0 75%, 0 25%, 3% 0, 0 0, 95% 0, 80% 100%, 3% 100%);
+  border-radius: 50px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.gradient-player {
+    background-color: #74c1df;
+    /* IE9, iOS 3.2+ */
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSI5NSUiIHkxPSIxMDclIiB4Mj0iNSUiIHkyPSItNyUiPjxzdG9wIHN0b3AtY29sb3I9IiNjNWUzZWYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjA3OCIvPjxzdG9wIHN0b3AtY29sb3I9IiM1NmIyZDUiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjM1NzAwMDAwMDAwMDAwMDA0Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzQxYThjZiIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNTU3Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzYzYmFkZSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNzU3Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzhlZDRmMSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuOTY5MDAwMDAwMDAwMDAwMSIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=);
+    background-image: -webkit-gradient(linear, 95% 107%, 5% -7%,color-stop(0.078, rgb(197, 227, 239)),color-stop(0.357, rgb(86, 178, 213)),color-stop(0.557, rgb(65, 168, 207)),color-stop(0.757, rgb(99, 186, 222)),color-stop(0.969, rgb(142, 212, 241)));
+    /* Android 2.3 */
+    background-image: -webkit-linear-gradient(121deg,rgb(197, 227, 239) 7.8%,rgb(86, 178, 213) 35.7%,rgb(65, 168, 207) 55.7%,rgb(99, 186, 222) 75.7%,rgb(142, 212, 241) 96.9%);
+    /* IE10+ */
+    background-image: linear-gradient(329deg,rgb(197, 227, 239) 7.8%,rgb(86, 178, 213) 35.7%,rgb(65, 168, 207) 55.7%,rgb(99, 186, 222) 75.7%,rgb(142, 212, 241) 96.9%);
+    background-image: -ms-linear-gradient(121deg,rgb(197, 227, 239) 7.8%,rgb(86, 178, 213) 35.7%,rgb(65, 168, 207) 55.7%,rgb(99, 186, 222) 75.7%,rgb(142, 212, 241) 96.9%);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+svg:hover {
+  fill: #C5EAF7;
+}
+
+.unselected {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.running-text {
+  width: 300px;
+  font: bold italic 110% serif;
+  color: rgb(11, 63, 81);
+}
+
+.slider-text {
+  margin-top: 8px;
+}
+
+.button-wrapper {
+  width: 150px;
+  margin-top: 11px;
+  margin-left: 5px;
+  display: flex;
+}
+
+.button {
+  padding: 2px;
+  width: 50%;
+}
+
+.timer-wrapper {
+  margin: 7px 18px 0px 16px;
+}
+
+.timer {
+  width: 40px;
+  margin: 0;
+  color: rgb(11, 63, 81);
+}
+
+.slider-wrapper {
+  display:inline-block;
+}
+
+.music-slider {
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.music-slider-inner {
+  border-radius: 30px;
+  background-color: rgb(80, 207, 230);
+  background-image:
+  linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  transition: 0.4s linear;
+  transition-property: width, background-color;
+}
+
+.volume-slider {
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 30px;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.volume-slider-inner {
+  border-radius: 30px;
+  background-color: rgb(121, 198, 252);
+  background-image:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  transition: 0.4s linear;
+  transition-property: width, background-color;
+}
+
+.mute-wrapper {
+  width: 50px;
+  display: flex;
+}
+
+.brand {
+  margin-top: 5px;
+  margin-left: 40px;
+  font: bold italic 110% serif;
+  font-size: 18px;
+  color: rgb(11, 63, 81);
+}
+
+.mute {
+  margin-top: 8px;
+  margin-left: 3px;
+}
+
+.volume {
+  margin-top: 12px;
+}
+
+.default-slider {
+  cursor: pointer;
+  background-color: blue;
+  border-radius: 10px;
+}
+
+.default-slider-inner {
+  background-color: aqua;
+  border-radius: 10px;
 }
