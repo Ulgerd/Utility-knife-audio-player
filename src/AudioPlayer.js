@@ -148,25 +148,25 @@ class AudioPlayer extends Component {
         <div className = "button-wrapper">
           <Button
             name={'backward'}
-            color={'#167A9D'}
+            color={'rgb(22, 122, 157)'}
             size={32}
             onClick={this.onBackward}
           />
           <Button
             name={isPlaying ? 'pause' : 'play'}
-            color={'#167A9D'}
+            color={'rgb(22, 122, 157)'}
             size={32}
             onClick={this.onPlay}
           />
           <Button
             name={'stop'}
-            color={'#167A9D'}
+            color={'rgb(22, 122, 157)'}
             size={32}
             onClick={this.onStop}
           />
           <Button
             name={'forward'}
-            color={'#167A9D'}
+            color={'rgb(22, 122, 157)'}
             size={32}
             onClick={this.onForward}
           />
@@ -206,7 +206,7 @@ class AudioPlayer extends Component {
             <div className='mute'>
               <Button
                 name={mute ? 'volume-mute' : 'volume-max'}
-                color={'#167A9D'}
+                color={'rgb(22, 122, 157)'}
                 size={25}
                 onClick={this.onMute}
               />

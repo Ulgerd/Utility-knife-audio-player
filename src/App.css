@@ -14,7 +14,7 @@ body {
 }
 
 .gradient-player {
-    background-color: #74c1df;
+    background-color: rgb(116, 193, 223);
     /* IE9, iOS 3.2+ */
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSI5NSUiIHkxPSIxMDclIiB4Mj0iNSUiIHkyPSItNyUiPjxzdG9wIHN0b3AtY29sb3I9IiNjNWUzZWYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjA3OCIvPjxzdG9wIHN0b3AtY29sb3I9IiM1NmIyZDUiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjM1NzAwMDAwMDAwMDAwMDA0Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzQxYThjZiIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNTU3Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzYzYmFkZSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNzU3Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzhlZDRmMSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuOTY5MDAwMDAwMDAwMDAwMSIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=);
     background-image: -webkit-gradient(linear, 95% 107%, 5% -7%,color-stop(0.078, rgb(197, 227, 239)),color-stop(0.357, rgb(86, 178, 213)),color-stop(0.557, rgb(65, 168, 207)),color-stop(0.757, rgb(99, 186, 222)),color-stop(0.969, rgb(142, 212, 241)));
@@ -26,7 +26,7 @@ body {
 }
 
 svg:hover {
-  fill: #C5EAF7;
+  fill: rgb(197, 234, 247);
 }
 
 .unselected {
@@ -129,11 +129,11 @@ svg:hover {
 
 .default-slider {
   cursor: pointer;
-  background-color: blue;
+  background-color: rgb(0, 0, 255);
   border-radius: 10px;
 }
 
 .default-slider-inner {
-  background-color: aqua;
+  background-color: rgb(0, 255, 255);
   border-radius: 10px;
 }
