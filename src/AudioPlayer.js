@@ -5,6 +5,10 @@ import Button from './components/button.js';
 import playlist from './audio/playlist.json';
 import './App.css';
 
+function addZero (num) {
+  return num > 9 ? num.toString() : `0${num}`
+}
+
 class AudioPlayer extends Component {
 
   state = {
@@ -108,17 +112,13 @@ class AudioPlayer extends Component {
     this.audio.currentTime = value;
   }
 
-  addZero = (num) => {
-    return num > 9 ? num.toString() : `0${num}`
-  }
-
   render() {
     let {playlist, currentTrack, currentTime, duration, isPlaying, mute} = this.state;
 
-    let currentTimeMin = this.addZero(Math.floor(currentTime / 60));
-    let currentTimeSec = this.addZero(Math.floor(currentTime % 60));
-    let durationMin = this.addZero(Math.floor(duration / 60));
-    let durationSec = this.addZero(Math.floor(duration % 60));
+    let currentTimeMin = addZero(Math.floor(currentTime / 60));
+    let currentTimeSec = addZero(Math.floor(currentTime % 60));
+    let durationMin = addZero(Math.floor(duration / 60));
+    let durationSec = addZero(Math.floor(duration % 60));
 
     let src = !!playlist[currentTrack] ?
       playlist[currentTrack].url : null;
