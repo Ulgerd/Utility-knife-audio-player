@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Marquee from 'react-text-marquee';
+import { throttle } from 'throttle-debounce';
 import Slider from './components/slider.js';
 import Button from './components/button.js';
 import playlist from './audio/playlist.json';
 import './App.css';
 
-function addZero (num) {
+const addZero = (num) => {
   return num > 9 ? num.toString() : `0${num}`
 }
 
@@ -26,7 +27,7 @@ class AudioPlayer extends Component {
       playlist: [...playlist]
     })
 
-    this.audio.onloadedmetadata = () => {
+this.audio.onloadedmetadata = () => {
 	this.setState({duration: this.audio.duration});
     };
 
@@ -98,21 +99,22 @@ class AudioPlayer extends Component {
     this.audio.muted = !mute;
   }
 
-  onVolumeChange = (volume) => {
+  onVolumeChange = throttle(300,(volume) => {
     this.setState({
       volume: volume
     })
     this.audio.volume = volume/100;
-  }
+  })
 
-  onCurrentTimeChange = (value) => {
+  onCurrentTimeChange = throttle(300,(value) => {
     this.setState({
       currentTime: value
     })
     this.audio.currentTime = value;
-  }
+  })
 
   render() {
+    console.log(this.state);
     let {playlist, currentTrack, currentTime, duration, isPlaying, mute} = this.state;
 
     let currentTimeMin = addZero(Math.floor(currentTime / 60));

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import '../App.css';
 
 class Slider extends Component {
@@ -28,7 +28,7 @@ class Slider extends Component {
   updateValue = (e) => {
     let currentWidth = this.calcWidth(e.clientX, e.target.offsetLeft, this.props.width);
     let value = this.calcValue(currentWidth, this.props.width);
-    this.props.onValueChange(value)
+    this.props.onValueChange(value);
   }
 
   onMouseUp = () => {
