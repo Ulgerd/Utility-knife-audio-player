@@ -29,7 +29,11 @@ svg:hover {
   fill: rgb(197, 234, 247);
 }
 
-.unselected {
+.disabled svg:hover {
+  fill: rgb(163, 222, 242);
+}
+
+.unselectable {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

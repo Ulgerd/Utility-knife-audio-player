@@ -4,10 +4,11 @@ import '../App.css';
 
 class Button extends Component {
   render() {
-    let {name, color, size, onClick} = this.props;
+    let {name, color, size, onClick, disabled} = this.props;
+    let buttonClass = disabled ? ' disabled': '';
     return(
       <div
-        className='button unselected'
+        className={'button unselectable' + buttonClass}
         onClick={e => onClick(e)}
       >
         <svg

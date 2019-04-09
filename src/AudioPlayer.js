@@ -78,7 +78,6 @@ class AudioPlayer extends Component {
     this.setState({
       mute: !this.audio.muted
     })
-
   }
 
   onVolumeChange = throttle(300, (volume) => {
@@ -129,7 +128,8 @@ class AudioPlayer extends Component {
         <div className = "button-wrapper">
           <Button
             name={'backward'}
-            color={'rgb(22, 122, 157)'}
+            disabled = {currentTrack===0 ? true:false}
+            color={currentTrack===0 ? 'rgb(163, 222, 242)' : 'rgb(22, 122, 157)'}
             size={32}
             onClick={this.onBackward}
           />
@@ -147,13 +147,14 @@ class AudioPlayer extends Component {
           />
           <Button
             name={'forward'}
-            color={'rgb(22, 122, 157)'}
+            disabled = {currentTrack===playlist.length-1 ? true:false}
+            color={currentTrack===playlist.length-1 ? 'rgb(163, 222, 242)' : 'rgb(22, 122, 157)'}
             size={32}
             onClick={this.onForward}
           />
         </div>
 
-        <div className="timer-wrapper unselected">
+        <div className="timer-wrapper unselectable">
           <div className="timer">
             {currentTimeMin}:{currentTimeSec}
           </div>
@@ -178,7 +179,7 @@ class AudioPlayer extends Component {
         </div>
 
         <div>
-          <div className="brand unselected">
+          <div className="brand unselectable">
             Utility Knife Player
           </div>
 

@@ -7,6 +7,14 @@ class Slider extends Component {
     drag: false,
   }
 
+  static propTypes = {
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number,
+    value: PropTypes.number,
+    max: PropTypes.number,
+    onValueChange: PropTypes.func.isRequired,
+  };
+
   static defaultProps = {
     height: 15,
     max: 100,
