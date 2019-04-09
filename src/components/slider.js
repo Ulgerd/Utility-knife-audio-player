@@ -21,7 +21,7 @@ class Slider extends Component {
     return width;
   };
 
-  
+
   calcValue = (currentWidth, totalWidth) => {
     return parseInt(currentWidth / totalWidth * this.props.max)
   };
@@ -54,7 +54,6 @@ class Slider extends Component {
   onMouseLeave = () => {
     if (this.state.drag) this.setState({ drag: false });
   }
-
 
   render() {
 
