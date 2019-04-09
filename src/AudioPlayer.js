@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Marquee from 'react-text-marquee';
 import { throttle } from 'throttle-debounce';
+import Audio from './components/audio.js';
 import Slider from './components/slider.js';
 import Button from './components/button.js';
 import playlist from './audio/playlist.json';
@@ -27,59 +28,17 @@ class AudioPlayer extends Component {
     this.setState({
       playlist: [...playlist]
     })
-
-    this.audio.onloadedmetadata = () => {
-	     this.setState({duration: this.audio.duration});
-    };
-
-    this.audio.onplay = () => {
-      this.currentTimeInterval = setInterval( () => {
-        this.setState({currentTime: this.audio.currentTime})
-      }, 500);
-    };
-
-    this.audio.onpause = () => {
-      clearInterval(this.currentTimeInterval);
-      if (Math.floor(this.audio.currentTime) === Math.floor(this.audio.duration)) {
-        this.setState({
-          currentTrack: this.state.currentTrack+1,
-          currentTime: 0,
-          isPlaying: false
-        })
-        this.onPlay();
-      }
-    };
   }
 
-  componentDidUpdate() {
-    this.doImperativeStuff()
-  }
-
-  doImperativeStuff = () => {
-    let {isPlaying, stopped, mute, volume, currentTime} = this.state;
-    let audio = this.audio;
-
-    if (isPlaying === audio.paused) {
-      isPlaying ? this.audio.play(): this.audio.pause();
-    }
-
-    if (stopped) {
-      audio.pause();
-      audio.currentTime = 0;
-    }
-
-    if (Math.floor(audio.currentTime) !== Math.floor(currentTime)) {
-      audio.currentTime = currentTime;
-    }
-
-    audio.volume = volume/100;
-    audio.muted = mute;
+  getDataFromAudio = (data) => {
+    this.setState({
+      ...this.state, ...data
+    })
   }
 
   onBackward = () => {
     let {currentTrack} = this.state;
     if (currentTrack !== 0) {
-      clearInterval(this.currentTimeInterval);
       this.setState({
         currentTrack: currentTrack-1,
         currentTime: 0,
@@ -91,7 +50,6 @@ class AudioPlayer extends Component {
   onForward = () => {
     let {playlist, currentTrack} = this.state
     if (currentTrack < playlist.length-1) {
-      clearInterval(this.currentTimeInterval);
       this.setState({
         currentTrack: currentTrack+1,
         currentTime: 0,
@@ -101,8 +59,9 @@ class AudioPlayer extends Component {
   }
 
   onPlay = () => {
+    let {isPlaying} = this.state
     this.setState({
-      isPlaying: !this.state.isPlaying,
+      isPlaying: !isPlaying,
       stopped: false
     })
   }
@@ -135,7 +94,6 @@ class AudioPlayer extends Component {
   })
 
   render() {
-    console.log(this.state);
     let {playlist, currentTrack, currentTime, duration, isPlaying, mute} = this.state;
 
     let currentTimeMin = addZero(Math.floor(currentTime / 60));
@@ -161,11 +119,11 @@ class AudioPlayer extends Component {
     return (
       <div className='audio-player-wrapper gradient-player'>
 
-        <audio
+        <Audio
           src={src}
-          ref={(ref) => {
-            this.audio = ref
-          }}
+          data = {this.state}
+          sendData = {this.getDataFromAudio}
+          onPlay={this.onPlay}
         />
 
         <div className = "button-wrapper">
@@ -225,7 +183,6 @@ class AudioPlayer extends Component {
           </div>
 
           <div className = "mute-wrapper">
-
             <div className='mute'>
               <Button
                 name={mute ? 'volume-mute' : 'volume-max'}
