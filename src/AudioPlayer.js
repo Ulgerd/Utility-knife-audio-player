@@ -20,6 +20,7 @@ class AudioPlayer extends Component {
     isPlaying: false,
     volume: 80,
     mute: false,
+    stopped: false
   }
 
   componentDidMount() {
@@ -27,8 +28,8 @@ class AudioPlayer extends Component {
       playlist: [...playlist]
     })
 
-this.audio.onloadedmetadata = () => {
-	this.setState({duration: this.audio.duration});
+    this.audio.onloadedmetadata = () => {
+	     this.setState({duration: this.audio.duration});
     };
 
     this.audio.onplay = () => {
@@ -50,9 +51,35 @@ this.audio.onloadedmetadata = () => {
     };
   }
 
+  componentDidUpdate() {
+    this.doImperativeStuff()
+  }
+
+  doImperativeStuff = () => {
+    let {isPlaying, stopped, mute, volume, currentTime} = this.state;
+    let audio = this.audio;
+
+    if (isPlaying === audio.paused) {
+      isPlaying ? this.audio.play(): this.audio.pause();
+    }
+
+    if (stopped) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+
+    if (Math.floor(audio.currentTime) !== Math.floor(currentTime)) {
+      audio.currentTime = currentTime;
+    }
+
+    audio.volume = volume/100;
+    audio.muted = mute;
+  }
+
   onBackward = () => {
     let {currentTrack} = this.state;
     if (currentTrack !== 0) {
+      clearInterval(this.currentTimeInterval);
       this.setState({
         currentTrack: currentTrack-1,
         currentTime: 0,
@@ -62,55 +89,49 @@ this.audio.onloadedmetadata = () => {
   }
 
   onForward = () => {
-    let {playlist, currentTrack} = this.state;
-    if (currentTrack < playlist.length-1)
-    this.setState({
-      currentTrack: currentTrack+1,
-      currentTime: 0,
-      isPlaying: false
-    })
+    let {playlist, currentTrack} = this.state
+    if (currentTrack < playlist.length-1) {
+      clearInterval(this.currentTimeInterval);
+      this.setState({
+        currentTrack: currentTrack+1,
+        currentTime: 0,
+        isPlaying: false
+      })
+    }
   }
 
   onPlay = () => {
-    if (this.audio.paused) {
-      this.audio.play();
-    } else if (!this.audio.paused) {
-      this.audio.pause()
-    }
     this.setState({
-      isPlaying: !this.state.isPlaying
+      isPlaying: !this.state.isPlaying,
+      stopped: false
     })
   }
 
   onStop = () => {
-    this.audio.pause();
-    this.audio.currentTime = 0;
     this.setState({
       currentTime: 0,
-      isPlaying: false
+      isPlaying: false,
+      stopped: true
     })
   }
 
   onMute = () => {
-    let mute = this.audio.muted
     this.setState({
-      mute: !mute
+      mute: !this.audio.muted
     })
-    this.audio.muted = !mute;
+
   }
 
-  onVolumeChange = throttle(300,(volume) => {
+  onVolumeChange = throttle(300, (volume) => {
     this.setState({
       volume: volume
     })
-    this.audio.volume = volume/100;
   })
 
   onCurrentTimeChange = throttle(300,(value) => {
     this.setState({
       currentTime: value
     })
-    this.audio.currentTime = value;
   })
 
   render() {

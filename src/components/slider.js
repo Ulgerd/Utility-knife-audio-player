@@ -21,9 +21,14 @@ class Slider extends Component {
     return width;
   };
 
+  
   calcValue = (currentWidth, totalWidth) => {
     return parseInt(currentWidth / totalWidth * this.props.max)
   };
+
+  valueToWidth = () => {
+    return parseInt((this.props.value / this.props.max) * this.props.width) || 0
+  }
 
   updateValue = (e) => {
     let currentWidth = this.calcWidth(e.clientX, e.target.offsetLeft, this.props.width);
@@ -31,13 +36,14 @@ class Slider extends Component {
     this.props.onValueChange(value);
   }
 
-  onMouseUp = () => {
-    if (this.state.drag) this.setState({ drag: false });
-  }
-
   onMouseDown = (e) => {
     this.updateValue(e);
     this.setState({drag: true});
+  }
+
+  onMouseUp = (e) => {
+    if (this.state.drag) this.setState({ drag: false });
+    this.updateValue(e);
   }
 
   onMouseMove = (e) => {
@@ -45,9 +51,10 @@ class Slider extends Component {
     this.updateValue(e);
   }
 
-  valueToWidth = () => {
-    return parseInt((this.props.value / this.props.max) * this.props.width) || 0
+  onMouseLeave = () => {
+    if (this.state.drag) this.setState({ drag: false });
   }
+
 
   render() {
 
@@ -71,7 +78,7 @@ class Slider extends Component {
           onMouseDown={this.onMouseDown}
           onMouseUp={this.onMouseUp}
           onMouseMove={this.onMouseMove}
-          onMouseLeave={this.onMouseUp}
+          onMouseLeave={this.onMouseLeave}
           style={backStyle}
         >
           <div
