@@ -158,6 +158,7 @@ class AudioPlayer extends Component {
           <div className="timer">
             {currentTimeMin}:{currentTimeSec}
           </div>
+          <hr className="line" size="1" color="#0B3F51"></hr>
           <div className="timer">
             {durationMin}:{durationSec}
           </div>
@@ -173,12 +174,12 @@ class AudioPlayer extends Component {
             classBack='music-slider'
             classFront='music-slider-inner'
           />
-          <div className="running-text">
+          <div className="marquee">
            <Marquee text={`${artist} ${title}`} />
           </div>
         </div>
 
-        <div>
+        <div className="volume-wrapper">
           <div className="brand unselectable">
             Utility Knife Player
           </div>

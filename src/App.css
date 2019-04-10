@@ -11,6 +11,7 @@ body {
   clip-path: polygon(0 75%, 0 25%, 3% 0, 0 0, 95% 0, 80% 100%, 3% 100%);
   border-radius: 50px;
   display: flex;
+  align-items: center;
 }
 
 .gradient-player {
@@ -39,36 +40,53 @@ svg:hover {
   -ms-user-select: none;
 }
 
-.running-text {
-  width: 300px;
+.marquee {
+  width: 280px;
   font: bold italic 110% serif;
   color: rgb(11, 63, 81);
+  margin-top: 3px;
+
 }
 
 .slider-text {
-  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .button-wrapper {
   width: 150px;
-  margin-top: 11px;
   margin-left: 5px;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .button {
-  padding: 2px;
-  width: 50%;
+  width: 32px;
+  height: 32px;
 }
 
 .timer-wrapper {
-  margin: 7px 18px 0px 16px;
+  width: 60px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .timer {
   width: 40px;
-  margin: 0;
   color: rgb(11, 63, 81);
+}
+
+.line {
+  align: "center";
+  width: 40px;
+  margin: 0px;
 }
 
 .slider-wrapper {
@@ -109,13 +127,22 @@ svg:hover {
   transition-property: width, background-color;
 }
 
-.mute-wrapper {
-  width: 50px;
+.volume-wrapper {
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mute-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 10px;
 }
 
 .brand {
-  margin-top: 5px;
+  margin-top: 10px;
   margin-left: 40px;
   font: bold italic 110% serif;
   font-size: 18px;
@@ -123,12 +150,13 @@ svg:hover {
 }
 
 .mute {
-  margin-top: 8px;
-  margin-left: 3px;
+  flex-grow: 1;
+  flex-basis: 0;
+  margin-top: 2px;
 }
 
 .volume {
-  margin-top: 12px;
+  flex-grow: 1;
 }
 
 .default-slider {
