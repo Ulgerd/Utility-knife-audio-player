@@ -2,6 +2,7 @@
 
 It looks nice, don't you think?
 
-![screenshot of sample](public/Player.jpg)
+![Utility Knife Audio Player](public/Player.jpg)
 
-https://utility-knife-audio-player-git-master.ulgerd.now.sh/
+You can try it here: [Utility Knife Audio Player](https://utility-knife-audio-player-git-master.ulgerd.now.sh/)
+
