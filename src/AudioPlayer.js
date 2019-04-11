@@ -158,7 +158,7 @@ class AudioPlayer extends Component {
           <div className="timer">
             {currentTimeMin}:{currentTimeSec}
           </div>
-          <hr className="line" size="1" color="#0B3F51"></hr>
+          <hr className="line" size="1" color="#105B75"></hr>
           <div className="timer">
             {durationMin}:{durationSec}
           </div>
